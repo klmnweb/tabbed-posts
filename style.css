@@ -1,0 +1,68 @@
+/*..jQuery UI Styles for the advanced navbar...*/
+ul {
+    list-style: disc;
+    margin-left: 1.5em;
+    margin-top: .5em;
+    margin-bottom: .5em;
+    line-height: 1.4;
+}
+.ui-tabs li {
+    display: inline-block;
+    margin: 0 .2em 1px 0;
+}
+.ui-tabs li a {
+    padding: .5em 1em;
+}
+.ui-tabs-nav {
+    position:relative;
+}
+.ui-tabs-overflow {
+	position: absolute;
+	right: 0;
+	z-index: 100;
+	list-style: none;
+	display: block;
+    background: #ececec;
+	padding: 0 10px 10px 10px;
+}
+.ui-tabs-overflow .tab-switcher{
+	display: block;
+    border-right: 0;
+    border-bottom: 1px solid;
+    border-radius: 0;
+    padding: 10px 0;
+}
+.ui-tabs-overflow .tab-switcher:last-child {
+    border: none;
+}
+.ui-tabs-overflow li {
+    border-radius: 4px;
+}
+.ui-tabs-overflow-selector {
+	position: absolute;
+	top: 2px;
+	right: 5px;
+	width: 40px;
+	height:100%;
+	max-height: 40px;
+	font-size:20px;
+	text-align: center;
+	font-weight: bold;
+	cursor: pointer;
+	user-select: none;
+}
+.ui-tabs-overflow-selector .total {
+	font-weight: normal;
+	font-size: 12px;
+    position: absolute;
+    top: 0;
+    background: red;
+    width: 15px;
+    height: 15px;
+    line-height: 1.3em;
+    color: #fff;
+    border-radius: 50%;
+}
+.ui-tabs-nav > li.ui-state-hover .close-tab-button {
+	display: initial !important;
+}
