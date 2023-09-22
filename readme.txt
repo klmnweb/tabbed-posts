@@ -3,7 +3,7 @@ Contributors: KlmnWeb
 Donate link: https://example.com/
 Tags: tabbed, blog, tabbed-posts, responsive, tab posts
 Requires at least: 5.9.5
-Tested up to: 6.2
+Tested up to: 6.3.1
 Stable tag: 1.0
 Requires PHP: 7.4.33
 License: GPLv2 or later

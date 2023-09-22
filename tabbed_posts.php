@@ -13,7 +13,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
-function kw_tp_load_js_styles()
+function klmnwb_tp_load_scripts()
 {
 		wp_register_script('tp-ui-js', plugin_dir_url(__FILE__) . 'jquery.overflowtabs.js', '', '', true);
 		wp_register_style('tp-css', plugin_dir_url(__FILE__) . 'css.css', '', '', false);
@@ -26,8 +26,8 @@ function kw_tp_load_js_styles()
 		wp_enqueue_script('jquery-ui-tabs');
 		wp_enqueue_script('tp-ui-js');
     }
-add_action('wp_enqueue_scripts', 'kw_tp_load_js_styles', 99);
-function kw_tabbed_posts_sc($atts){
+add_action('wp_enqueue_scripts', 'klmnwb_tp_load_scripts', 99);
+function klmnwb_tp_sc($atts){
 	ob_start();
 	$allowed_html = array( 
 	'div' => array(
@@ -109,25 +109,26 @@ function kw_tabbed_posts_sc($atts){
 		 }
 		 ?>
 		 </a>
-            <h3><a href="<?php esc_url(the_permalink()); ?>"><?php esc_html_e(the_title()); ?></a></h3>
+            <h3><a href="<?php esc_url(the_permalink()); ?>"><?php echo esc_html(the_title()); ?></a></h3>
 			<?php if ($atts['show_excerpt']==='yes'){
 			$the_content = apply_filters('the_content', get_the_content()); ?>
 			<?php if (!empty($the_content)){?>			
-			<p class="post-exrpt"><?php echo wp_trim_words( wp_strip_all_tags($the_content), 20, '...'); ?></p>
+			<p class="post-exrpt"><?php echo wp_trim_words( esc_html(wp_strip_all_tags($the_content)), 20, '...'); ?></p>
 			<?php }}?>
 			<div class="tab-post-meta-single">
             <?php
                 if ($atts['show_author'] != "no"){
 				esc_html_e('By ', 'tabbed-posts');
 				esc_url(the_author_posts_link());
-				esc_html_e(' &#124; ');
+				echo esc_html(' &#124; ');
 				}
 				if ($atts['show_cat'] != "no"){ 
 				esc_html_e('in ', 'tabbed-posts');
 				esc_url(the_category(' ')); 
-				esc_html_e(' &#124; ');
+				echo esc_html(' &#124; ');
 				}
-				if ($atts['show_date'] != "no"){ the_time($atts['date_format']); }
+				if ($atts['show_date'] != "no"){ echo wp_date( $atts['date_format'], get_post_timestamp() ); }
+				
 			?>
 		</div>
 		</div>
@@ -149,25 +150,25 @@ function kw_tabbed_posts_sc($atts){
 		 }
 		 ?>
            </a>
-            <h3><a href="<?php esc_url(the_permalink()); ?>"><?php esc_html_e(the_title()); ?></a></h3>
+            <h3><a href="<?php esc_url(the_permalink()); ?>"><?php echo esc_html(the_title()); ?></a></h3>
 		   <?php if ($atts['show_excerpt']==='yes'){
 			$the_content = apply_filters('the_content', get_the_content()); ?>
 			<?php if (!empty($the_content)){?>			
-			<p class="post-exrpt"><?php echo wp_trim_words( wp_strip_all_tags($the_content), 20, '...'); ?></p>
+			<p class="post-exrpt"><?php echo wp_trim_words( esc_html(wp_strip_all_tags($the_content)), 20, '...'); ?></p>
 			<?php }}?>
 			<div class="tab-post-meta-single">
             <?php
                 if ($atts['show_author'] != "no"){
 				esc_html_e(' By ', 'tabbed-posts');
 				esc_url(the_author_posts_link());
-				esc_html_e(' &#124; ');
+				echo esc_html(' &#124; ');
 				}
 				if ($atts['show_cat'] != "no"){ 
 				esc_html_e(' in ', 'tabbed-posts');
 				esc_url(the_category(' ')); 
-				esc_html_e( ' &#124; ');
+				echo esc_html( ' &#124; ');
 				}
-				if ($atts['show_date'] != "no"){ esc_html_e(the_time($atts['date_format'])); }
+				if ($atts['show_date'] != "no"){ echo wp_date( $atts['date_format'], get_post_timestamp() ); }
 			?>
 		</div>
 		</div>
@@ -196,11 +197,11 @@ function kw_tabbed_posts_sc($atts){
           </a>
 		  </div>
           <div class="tab-post-title">
-			<h3><a href="<?php esc_url(the_permalink());?>" title="<?php esc_attr(the_title());?>"><?php esc_html_e(the_title());?></a></h3>
+			<h3><a href="<?php esc_url(the_permalink());?>" title="<?php esc_attr(the_title());?>"><?php echo esc_html(the_title());?></a></h3>
 			<?php if($atts['show_excerpt']==='yes' && $atts['posts_num']==2){
 			$the_content = apply_filters('the_content', get_the_content()); ?>
 			<?php if (!empty($the_content)){?>			
-			<p class="post-exrpt"><?php echo wp_trim_words( wp_strip_all_tags($the_content), 20, '...'); ?></p>
+			<p class="post-exrpt"><?php echo wp_trim_words( esc_html(wp_strip_all_tags($the_content)), 20, '...'); ?></p>
 			<?php }}?>
 			</div>
 			</div>
@@ -209,14 +210,14 @@ function kw_tabbed_posts_sc($atts){
 				if ($atts['show_author'] != "no"){
 				esc_html_e(' By ', 'tabbed-posts');
 				esc_url(the_author_posts_link());
-				esc_html_e(' &#124; ');
+				echo esc_html(' &#124; ');
 				}
 				if ($atts['show_cat'] != "no"){ 
 				esc_html_e(' in ', 'tabbed-posts');
 				esc_url(the_category(' ')); 
-				esc_html_e(' &#124; ');
+				echo esc_html(' &#124; ');
 				}
-				if ($atts['show_date'] != "no"){ esc_html_e(the_time($atts['date_format'])); }
+				if ($atts['show_date'] != "no"){  echo wp_date( $atts['date_format'], get_post_timestamp() ); }
 			?>
            </div>
 		   </div>
@@ -227,7 +228,7 @@ function kw_tabbed_posts_sc($atts){
                 $i++;
             endwhile;
         endif;
-		echo paginate_links();
+		echo wp_kses_post(paginate_links());
         wp_reset_postdata();
 ?>
        </div>
@@ -247,14 +248,14 @@ function kw_tabbed_posts_sc($atts){
     $output = ob_get_clean();
     return $output;
 }
-add_shortcode('tabbed_posts', 'kw_tabbed_posts_sc');
-function kw_tabbed_posts_iniline_js(){
+add_shortcode('tabbed_posts', 'klmnwb_tp_sc');
+function klmnwb_tp_iniline_js(){
 	ob_start();
 	?>
 	<script language="javascript" type="text/javascript">
 	document.addEventListener("DOMContentLoaded", function () {
-  var elems = document.getElementsByClassName('tab-heads');
-// display the navbar after the JS UI loaded
+	var elems = document.getElementsByClassName('tab-heads');
+	// display the navbar after the JS UI loaded
 	for (var i=0;i<elems.length;i+=1){
 	elems[i].style.display = 'block';
 }
@@ -276,6 +277,7 @@ function kw_tabbed_posts_iniline_js(){
 }
 </script>
 <?php
-echo ob_get_clean();
+$output = ob_get_clean();
+echo $output;
 }
-add_action('wp_footer', 'kw_tabbed_posts_iniline_js');
+add_action('wp_footer', 'klmnwb_tp_iniline_js');
